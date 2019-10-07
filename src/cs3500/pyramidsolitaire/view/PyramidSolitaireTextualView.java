@@ -45,7 +45,7 @@ public class PyramidSolitaireTextualView implements PyramidSolitaireView {
     for (int i = 0; i < model.getNumRows(); i++) {
       int lastNonNull = -1;
       for (int j = 0; j < model.getRowWidth(i); j++) {
-        if (model.getCardAt(i, j).toString() != null) {
+        if (model.getCardAt(i, j) != null) {
           lastNonNull = j;
         }
       }
@@ -54,9 +54,13 @@ public class PyramidSolitaireTextualView implements PyramidSolitaireView {
         stringModel.append(whiteSpace);
         for (int j = 0; j <= lastNonNull; j++) {
           if (j != lastNonNull) {
-            c = padChar(model.getCardAt(i, j).toString());
+            if(model.getCardAt(i, j) == null) {
+              c = "   ";
+            } else {
+              c = padChar(model.getCardAt(i, j).toString());
+            }
           } else {
-            if (model.getCardAt(i, j).toString() == null) {
+            if (model.getCardAt(i, j) == null) {
               c = "   ";
             } else {
               c = model.getCardAt(i, j).toString();
@@ -109,7 +113,7 @@ public class PyramidSolitaireTextualView implements PyramidSolitaireView {
 
   private int lastNonEmpty(List c) {
     for (int i = c.size() - 1; i >= 0; i--) {
-      if (c.get(i).toString() != null) {
+      if (c.get(i) != null) {
         return i;
       }
     }

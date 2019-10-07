@@ -1,7 +1,7 @@
-package cs3500.pyramidsolitaire.model.hw02;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import cs3500.pyramidsolitaire.model.hw02.PyramidSolitaireModel;
 
 /**
  * Represents a Mock of the BasicPyramidSolitaire Model to test that the Controller correctly

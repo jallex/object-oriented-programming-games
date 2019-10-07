@@ -147,6 +147,9 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
             this.ap.append("\nScore: " + model.getScore() + "\n");
           }
         }
+        if (model.isGameOver() || model.getScore() == 0) {
+          break;
+        }
       }
     } catch (IOException io) {
       throw new IllegalStateException("the Appendable object is unable to transmit output " +
@@ -214,7 +217,7 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
    * @throws IllegalStateException if the Readable ran out and the user did not quit the game.
    */
   private void checkIfFailedToQuit(Scanner scan, PyramidSolitaireModel m) {
-    if (!scan.hasNext() && m.isGameOver()) {
+    if (!scan.hasNext() && !m.isGameOver()) {
       throw new IllegalStateException("User did not enter enough input to complete/quit game.");
     }
   }

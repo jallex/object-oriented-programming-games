@@ -1,5 +1,3 @@
-package cs3500.pyramidsolitaire.model.hw02;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import cs3500.pyramidsolitaire.model.hw02.BasicPyramidSolitaire;
+import cs3500.pyramidsolitaire.model.hw02.Card;
+import cs3500.pyramidsolitaire.model.hw02.ICard;
+import cs3500.pyramidsolitaire.model.hw02.Type;
 import cs3500.pyramidsolitaire.view.PyramidSolitaireTextualView;
 
 import static org.junit.Assert.assertEquals;
@@ -178,11 +180,11 @@ public class BasicPyramidSolitaireTest {
 
     //Empty Pyramid
     this.pyramid5 = new ICard[3][];
-    ICard[] row50 = {new EmptyCard()};
+    ICard[] row50 = {null};
     this.pyramid5[0] = row50;
-    ICard[] row51 = {new EmptyCard(), new EmptyCard()};
+    ICard[] row51 = {null, null};
     this.pyramid5[1] = row51;
-    ICard[] row52 = {new EmptyCard(), new EmptyCard(), new EmptyCard()};
+    ICard[] row52 = {null, null, null};
     this.pyramid5[2] = row52;
 
     //Current draw pile
@@ -327,7 +329,7 @@ public class BasicPyramidSolitaireTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  //tries to remove an emptyCard
+  //tries to remove an null
   public void testRemove2CardsException0() {
     assertEquals("    Q♥\n" +
             "  K♣  A♦\n" +
@@ -415,7 +417,7 @@ public class BasicPyramidSolitaireTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  //Tries to remove an EmptyCard
+  //Tries to remove a null
   public void testRemove1CardException27() {
     assertEquals("    Q♥\n" +
             "  K♣  A♦\n" +
@@ -470,7 +472,7 @@ public class BasicPyramidSolitaireTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  //Tries to remove an EmptyCard
+  //Tries to remove a null
   public void testRemoveUsingDrawException4() {
     assertEquals("    Q♥\n" +
             "  K♣  A♦\n" +

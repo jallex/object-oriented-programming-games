@@ -1,5 +1,3 @@
-package cs3500.pyramidsolitaire.model.hw02;
-
 /**
  * Represents a user providing the program with  an input.
  */

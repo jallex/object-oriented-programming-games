@@ -1,5 +1,3 @@
-package cs3500.pyramidsolitaire.model.hw02;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -12,6 +10,11 @@ import org.junit.Test;
 
 import cs3500.pyramidsolitaire.controller.PyramidSolitaireController;
 import cs3500.pyramidsolitaire.controller.PyramidSolitaireTextualController;
+import cs3500.pyramidsolitaire.model.hw02.BasicPyramidSolitaire;
+import cs3500.pyramidsolitaire.model.hw02.Card;
+import cs3500.pyramidsolitaire.model.hw02.ICard;
+import cs3500.pyramidsolitaire.model.hw02.PyramidSolitaireModel;
+import cs3500.pyramidsolitaire.model.hw02.Type;
 
 import static org.junit.Assert.assertEquals;
 
@@ -144,6 +147,10 @@ public class BasicPyramidSolitaireControllerTest {
     deck3.add(new Card(12, Type.CLUBS));
     deck3.add(new Card(12, Type.DIAMONDS));
     deck3.add(new Card(12, Type.SPADES));
+    deck3.add(new Card(13, Type.HEARTS));
+    deck3.add(new Card(13, Type.DIAMONDS));
+    deck3.add(new Card(13, Type.CLUBS));
+    deck3.add(new Card(13, Type.SPADES));
     deck3.add(new Card(3, Type.DIAMONDS));
     deck3.add(new Card(3, Type.SPADES));
     deck3.add(new Card(3, Type.HEARTS));
@@ -154,7 +161,6 @@ public class BasicPyramidSolitaireControllerTest {
     deck3.add(new Card(2, Type.CLUBS));
     deck3.add(new Card(10, Type.DIAMONDS));
     deck3.add(new Card(10, Type.SPADES));
-    deck3.add(new Card(13, Type.CLUBS));
     deck3.add(new Card(4, Type.HEARTS));
     deck3.add(new Card(4, Type.CLUBS));
     deck3.add(new Card(4, Type.DIAMONDS));
@@ -185,9 +191,6 @@ public class BasicPyramidSolitaireControllerTest {
     deck3.add(new Card(11, Type.CLUBS));
     deck3.add(new Card(11, Type.DIAMONDS));
     deck3.add(new Card(11, Type.SPADES));
-    deck3.add(new Card(13, Type.HEARTS));
-    deck3.add(new Card(13, Type.DIAMONDS));
-    deck3.add(new Card(13, Type.SPADES));
 
   }
 
@@ -333,7 +336,7 @@ public class BasicPyramidSolitaireControllerTest {
       new InputInteraction("1"),
       new InputInteraction("1"),
       new InputInteraction("1"),
-      new PrintInteraction("You win!")};
+      new PrintInteraction(false,"You win!")};
     testRunWinGame(this.bps, removeLast);
   }
 
@@ -354,59 +357,63 @@ public class BasicPyramidSolitaireControllerTest {
       new InputInteraction("dd 7"),
       new InputInteraction("dd 8"),
       new InputInteraction("dd 9"),
-      new PrintInteraction("  10♣\n" +
+      new InputInteraction("dd 10"),
+      new InputInteraction("dd 11"),
+      new InputInteraction("dd 12"),
+      new InputInteraction("dd 13"),
+      new PrintInteraction(false, "  10♣\n" +
               "A♣\n" +
-              "Draw: K♠, Q♥, Q♣, Q♦, Q♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, 10♦, 10♠," +
-              " K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, " +
-              "7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: J♠, Q♥, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, " +
+              "A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, " +
+              "6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null, Q♥, Q♣, Q♦, Q♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, " +
-              "10♦, 10♠, K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, " +
-              "7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: null, Q♥, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠," +
+              " 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, " +
+              "7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null, null, Q♣, Q♦, Q♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, " +
-              "10♦, 10♠, K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, " +
-              "7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: null null, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, " +
+              "2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
+              "7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null, null, null, Q♦, Q♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, 10♦, " +
-              "10♠, K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, " +
-              "8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: null null null, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, " +
+              "2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
+              "7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null, null, null, null, Q♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, 10♦, 10♠," +
-              " K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, " +
-              "8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: null null null null, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2" +
+              "♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, " +
+              "7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null, null, null, null, null, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, 10♦, " +
-              "10♠, K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠," +
-              " 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: null null null null null, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, " +
+              "2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
+              "7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null, null, null, null, null, null, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, " +
-              "10♦, 10♠, K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
-              "7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: null null null null null null, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, " +
+              "2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, " +
+              "7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null, null, null, null, null, null, null, 3♥, A♥, A♦, A♠, 2♥, 2♣, " +
-              "10♦, 10♠, K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
-              "7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: null null null null null null null, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, " +
+              "A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥," +
+              " 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null, null, null, null, null, null, null, null, A♥, A♦, A♠, 2♥, 2♣, " +
-              "10♦, 10♠, K♣, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
-              "7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦, J♠, K♥, K♦\n" +
+              "Draw: null null null null null null null null, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, " +
+              "2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦," +
+              " 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "Game over. Score: 11")};
 

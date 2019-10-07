@@ -1,5 +1,3 @@
-package cs3500.pyramidsolitaire.model.hw02;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,6 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import cs3500.pyramidsolitaire.model.hw02.BasicPyramidSolitaire;
+import cs3500.pyramidsolitaire.model.hw02.Card;
+import cs3500.pyramidsolitaire.model.hw02.EmptyCard;
+import cs3500.pyramidsolitaire.model.hw02.ICard;
+import cs3500.pyramidsolitaire.model.hw02.PyramidSolitaireModel;
+import cs3500.pyramidsolitaire.model.hw02.Type;
 import cs3500.pyramidsolitaire.view.PyramidSolitaireTextualView;
 
 import static org.junit.Assert.assertEquals;

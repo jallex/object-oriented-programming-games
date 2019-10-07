@@ -1,6 +1,9 @@
-package cs3500.pyramidsolitaire.model.hw02;
-
 import org.junit.Test;
+
+import cs3500.pyramidsolitaire.model.hw02.Card;
+import cs3500.pyramidsolitaire.model.hw02.EmptyCard;
+import cs3500.pyramidsolitaire.model.hw02.ICard;
+import cs3500.pyramidsolitaire.model.hw02.Type;
 
 import static org.junit.Assert.assertEquals;
 

@@ -77,16 +77,16 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     testInValidCard(row2, card2);
     ICard cardFirst = this.getCardAt(row1, card1);
     ICard cardSecond = this.getCardAt(row2, card2);
-    if (cardFirst.isEmptyCard()
-            || cardSecond.isEmptyCard()
-            || !(cardFirst.addTo13(cardSecond))
+    if (cardFirst == null
+            || cardSecond == null
+            || !(cardFirst.score() + cardSecond.score() == 13)
             || !(this.isUncovered(row1, card1))
             || !(this.isUncovered(row2, card2))) {
       throw new IllegalArgumentException("This move is not legal- cards must be uncovered and " +
               "add to 13.");
     } else {
-      pyramid[row1][card1] = new EmptyCard();
-      pyramid[row2][card2] = new EmptyCard();
+      pyramid[row1][card1] = null;
+      pyramid[row2][card2] = null;
     }
   }
 
@@ -98,9 +98,9 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     testInValidRow(row);
     testInValidCard(row, card);
     ICard card1 = this.getCardAt(row, card);
-    if (card1.isKing()
+    if (card1 != null && card1.isKing()
             && this.isUncovered(row, card)) {
-      pyramid[row][card] = new EmptyCard();
+      pyramid[row][card] = null;
     } else {
       throw new IllegalArgumentException("This move is not legal- cards must be uncovered and "
               + "add to 13.");
@@ -117,21 +117,21 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
       throw new IllegalArgumentException("The index of the draw must be >= 0 and <= "
               + "the size of the currentDraw.");
     }
-    if (this.currentDraw[drawIndex].isEmptyCard()) {
+    if (this.currentDraw[drawIndex] == null) {
       throw new IllegalArgumentException("Cannot remove using an empty card.");
     }
     testInValidRow(row);
     testInValidCard(row, card);
     ICard cardFirst = this.getCardAt(row, card);
     ICard cardSecond = this.currentDraw[drawIndex];
-    if (cardFirst.isEmptyCard()
-            || cardSecond.isEmptyCard()
-            || !(cardFirst.addTo13(cardSecond))
+    if (cardFirst == null
+            || cardSecond == null
+            || !(cardFirst.score() + (cardSecond.score()) == 13)
             || !(this.isUncovered(row, card))) {
       throw new IllegalArgumentException("This move is not legal- cards must be uncovered and "
               + "add to 13.");
     } else {
-      pyramid[row][card] = new EmptyCard();
+      pyramid[row][card] = null;
       this.discardDraw(drawIndex);
     }
   }
@@ -143,7 +143,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     } else if (drawIndex < 0
             || drawIndex > this.currentDraw.length) {
       throw new IllegalArgumentException("This move is invalid.");
-    } else if (this.currentDraw[drawIndex].isEmptyCard()) {
+    } else if (this.currentDraw[drawIndex] == null) {
       throw new IllegalArgumentException("Cannot discard Empty Card.");
     } else if (this.stock.size() > 0) {
       currentDraw[drawIndex] = this.stock.get(0);
@@ -200,7 +200,9 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     int score = 0;
     for (int i = 0; i < this.pyramid.length; i++) {
       for (int j = 0; j < this.pyramid[i].length; j++) {
-        score += this.getCardAt(i, j).score();
+        if(this.getCardAt(i, j) != null) {
+          score += this.getCardAt(i, j).score();
+        }
       }
     }
     return score;
@@ -216,7 +218,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
             || card > pyramid[row].length - 1
             || card < 0) {
       throw new IllegalArgumentException("Card position is not valid.");
-    } else if (pyramid[row][card].isEmptyCard()) {
+    } else if (pyramid[row][card] == null) {
       return null;
     }
     else {
@@ -352,11 +354,11 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     if (row == pyramid.length - 1) {
       return true;
     }
-    if (this.getCardAt(row, card).isEmptyCard()) {
+    if (this.getCardAt(row, card) == null) {
       return true;
     }
-    return pyramid[row + 1][card].isEmptyCard()
-            && pyramid[row + 1][card + 1].isEmptyCard();
+    return pyramid[row + 1][card] == null
+            && pyramid[row + 1][card + 1] == null;
   }
 
   /**
@@ -370,7 +372,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
       for (int j = 0; j < deckArray.size(); j++) {
         if (i != j
                 && deckArray.get(i).equals(deckArray.get(j))
-                && !deckArray.get(i).isEmptyCard()) {
+                && deckArray.get(i) != null) {
           return false;
         }
       }
@@ -407,7 +409,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     ArrayList<ICard> exposed = new ArrayList<ICard>();
     for (int i = 0; i < this.pyramid.length; i++) {
       for (int j = 0; j < this.pyramid[i].length; j++) {
-        if (this.isUncovered(i, j) && !this.getCardAt(i, j).isEmptyCard()) {
+        if (this.isUncovered(i, j) && this.getCardAt(i, j) != null) {
           exposed.add(this.getCardAt(i, j));
         }
       }
@@ -425,7 +427,8 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     for (int i = 0; i < exposed.size(); i++) {
       for (int j = 0; j < exposed.size(); j++) {
         if (i != j
-                && exposed.get(i).addTo13(exposed.get(j))) {
+                && exposed.get(i).score() + exposed.get(j).score() == 13
+        || exposed.get(i).isKing()) {
           return true;
         }
       }
@@ -443,8 +446,8 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
   private boolean drawAndExposedAddTo13(ArrayList<ICard> exposed) {
     for (int i = 0; i < exposed.size(); i++) {
       for (int j = 0; j < this.currentDraw.length; j++) {
-        if (!this.currentDraw[j].isEmptyCard()) {
-          if (this.currentDraw[j].addTo13(exposed.get(i))
+        if (this.currentDraw[j] != null) {
+          if (this.currentDraw[j].score() + exposed.get(i).score() == 13
                   || this.currentDraw[j].isKing()
                   || exposed.get(i).isKing()) {
             return true;

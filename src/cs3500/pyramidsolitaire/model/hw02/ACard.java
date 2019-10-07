@@ -7,13 +7,6 @@ public abstract class ACard implements ICard {
   @Override
   public abstract boolean isEmptyCard();
 
-  @Override
-  public boolean addTo13(ICard c) {
-    return ! this.isEmptyCard()
-            && ! c.isEmptyCard()
-            &&
-            this.score() + c.score() == 13;
-  }
 
   @Override
   public abstract boolean isKing();
