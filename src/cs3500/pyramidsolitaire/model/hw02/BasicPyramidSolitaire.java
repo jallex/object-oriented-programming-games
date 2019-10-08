@@ -7,7 +7,8 @@ import java.util.Random;
 
 
 /**
- * Represents a Basic Pyramid Solitaire.
+ * Represents a Basic Pyramid Solitaire constructed from a stock of cards into a specified
+ * pyramid formation for the game.
  */
 public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
   //cards currently in the stock
@@ -79,7 +80,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     ICard cardSecond = this.getCardAt(row2, card2);
     if (cardFirst == null
             || cardSecond == null
-            || !(cardFirst.score() + cardSecond.score() == 13)
+            || (cardFirst.score() + cardSecond.score() != 13)
             || !(this.isUncovered(row1, card1))
             || !(this.isUncovered(row2, card2))) {
       throw new IllegalArgumentException("This move is not legal- cards must be uncovered and " +
@@ -98,7 +99,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     testInValidRow(row);
     testInValidCard(row, card);
     ICard card1 = this.getCardAt(row, card);
-    if (card1 != null && card1.isKing()
+    if (card1 != null && card1.score() == 13
             && this.isUncovered(row, card)) {
       pyramid[row][card] = null;
     } else {
@@ -126,7 +127,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     ICard cardSecond = this.currentDraw[drawIndex];
     if (cardFirst == null
             || cardSecond == null
-            || !(cardFirst.score() + (cardSecond.score()) == 13)
+            || (cardFirst.score() + (cardSecond.score()) != 13)
             || !(this.isUncovered(row, card))) {
       throw new IllegalArgumentException("This move is not legal- cards must be uncovered and "
               + "add to 13.");
@@ -192,7 +193,8 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     return this.isGameWon()
             ||
             (this.stock.size() == 0
-                    && !this.isMore13Pair());
+                    && !this.isMore13Pair()
+            && this.testAllDrawCardsEmpty());
   }
 
   @Override
@@ -200,7 +202,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     int score = 0;
     for (int i = 0; i < this.pyramid.length; i++) {
       for (int j = 0; j < this.pyramid[i].length; j++) {
-        if(this.getCardAt(i, j) != null) {
+        if (this.getCardAt(i, j) != null) {
           score += this.getCardAt(i, j).score();
         }
       }
@@ -428,7 +430,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
       for (int j = 0; j < exposed.size(); j++) {
         if (i != j
                 && exposed.get(i).score() + exposed.get(j).score() == 13
-        || exposed.get(i).isKing()) {
+                || exposed.get(i).score() == 13) {
           return true;
         }
       }
@@ -448,8 +450,8 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
       for (int j = 0; j < this.currentDraw.length; j++) {
         if (this.currentDraw[j] != null) {
           if (this.currentDraw[j].score() + exposed.get(i).score() == 13
-                  || this.currentDraw[j].isKing()
-                  || exposed.get(i).isKing()) {
+                  || this.currentDraw[j].score() == 13
+                  || exposed.get(i).score() == 13) {
             return true;
           }
         }
@@ -483,5 +485,18 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
             || num < 0) {
       throw new IllegalArgumentException("This is not a valid card number.");
     }
+  }
+
+  /**
+   * Returns if all the draw cards are empty.
+   * @return if all the draw cards are empty
+   */
+  private boolean testAllDrawCardsEmpty() {
+    for (int i = 0; i < this.currentDraw.length; i++) {
+      if (this.currentDraw[i] != null) {
+        return false;
+      }
+    }
+    return true;
   }
 }

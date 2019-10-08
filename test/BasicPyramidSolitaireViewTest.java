@@ -7,7 +7,6 @@ import java.util.Random;
 
 import cs3500.pyramidsolitaire.model.hw02.BasicPyramidSolitaire;
 import cs3500.pyramidsolitaire.model.hw02.Card;
-import cs3500.pyramidsolitaire.model.hw02.EmptyCard;
 import cs3500.pyramidsolitaire.model.hw02.ICard;
 import cs3500.pyramidsolitaire.model.hw02.PyramidSolitaireModel;
 import cs3500.pyramidsolitaire.model.hw02.Type;
@@ -92,14 +91,14 @@ public class BasicPyramidSolitaireViewTest {
     deck1.add(new Card(13, Type.SPADES));
 
     this.pyramid = new ICard[4][];
-    ICard[] row0 = {new EmptyCard()};
+    ICard[] row0 = {null};
     this.pyramid[0] = row0;
     ICard[] row1 = {new Card(10, Type.CLUBS), new Card(10, Type.DIAMONDS)};
     this.pyramid[1] = row1;
-    ICard[] row2 = {new Card(10, Type.SPADES), new EmptyCard(), new EmptyCard()};
+    ICard[] row2 = {new Card(10, Type.SPADES), null, null};
     this.pyramid[2] = row2;
-    ICard[] row3 = {new EmptyCard(), new Card(2, Type.SPADES), new Card(3, Type.HEARTS),
-      new EmptyCard()};
+    ICard[] row3 = {null, new Card(2, Type.SPADES), new Card(3, Type.HEARTS),
+      null};
     this.pyramid[3] = row3;
 
     this.bps = new BasicPyramidSolitaire();

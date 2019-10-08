@@ -361,35 +361,73 @@ public class BasicPyramidSolitaireControllerTest {
       new InputInteraction("dd 11"),
       new InputInteraction("dd 12"),
       new InputInteraction("dd 13"),
+      new InputInteraction("dd 14"),
+      new InputInteraction("dd 15"),
+      new InputInteraction("dd 16"),
+      new InputInteraction("dd 17"),
+      new InputInteraction("dd 18"),
+      new InputInteraction("dd 19"),
+      new InputInteraction("dd 20"),
+      new InputInteraction("dd 21"),
+      new InputInteraction("dd 22"),
+      new InputInteraction("dd 23"),
+      new InputInteraction("dd 24"),
+      new InputInteraction("dd 25"),
+      new InputInteraction("dd 26"),
+      new InputInteraction("dd 27"),
+      new InputInteraction("dd 28"),
+      new InputInteraction("dd 29"),
+      new InputInteraction("dd 30"),
+      new InputInteraction("dd 31"),
+      new InputInteraction("dd 32"),
+      new InputInteraction("dd 33"),
+      new InputInteraction("dd 34"),
+      new InputInteraction("dd 35"),
+      new InputInteraction("dd 36"),
+      new InputInteraction("dd 37"),
+      new InputInteraction("dd 38"),
+      new InputInteraction("dd 39"),
+      new InputInteraction("dd 40"),
+      new InputInteraction("dd 41"),
+      new InputInteraction("dd 42"),
+      new InputInteraction("dd 43"),
+      new InputInteraction("dd 44"),
+      new InputInteraction("dd 45"),
+      new InputInteraction("dd 46"),
+      new InputInteraction("dd 47"),
+      new InputInteraction("dd 48"),
+      new InputInteraction("dd 49"),
+      new InputInteraction("dd 50"),
       new PrintInteraction(false, "  10♣\n" +
               "A♣\n" +
-              "Draw: J♠, Q♥, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, " +
-              "A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, " +
-              "6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
-              "Score: 11\n" +
-              "  10♣\n" +
-              "A♣\n" +
-              "Draw: null, Q♥, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠," +
-              " 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, " +
-              "7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
-              "Score: 11\n" +
-              "  10♣\n" +
-              "A♣\n" +
-              "Draw: null null, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, " +
-              "2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
+              "Draw: J♠, Q♥, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, " +
+              "2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
               "7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null null null, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, " +
-              "2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, " +
-              "7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Draw: null, Q♥, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, " +
+              "10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, " +
+              "8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null null null null, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2" +
-              "♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, " +
-              "7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Draw: null null, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, " +
+              "10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, " +
+              "8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, " +
+              "10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, " +
+              "8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, 2♥, 2♣, " +
+              "10♦," +
+              " 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, "
+              + "8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
@@ -399,21 +437,284 @@ public class BasicPyramidSolitaireControllerTest {
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null null null null null null, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, " +
+              "Draw: null null null null null null, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠," +
+              " 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, " +
+              "7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, " +
               "2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, " +
               "7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null null null null null null null, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, " +
+              "Draw: null null null null null null null null, K♠, 3♦, 3♠, 3♥, A♥, " +
+              "A♦, A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, " +
+              "7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null, 3♦, 3♠, 3♥, A♥, A♦, " +
+              "A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, " +
+              "7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null, 3♠, 3♥, A♥, A♦, " +
+              "A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, " +
+              "7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null, 3♥, A♥, A♦, " +
+              "A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, " +
+              "7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null, A♥, A♦," +
+              " A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, " +
+              "7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null null, A♦, " +
+              "A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, " +
+              "7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null null null, " +
               "A♠, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥," +
               " 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
               "Score: 11\n" +
               "  10♣\n" +
               "A♣\n" +
-              "Draw: null null null null null null null null, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, " +
-              "2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦," +
-              " 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Draw: null null null null null null null null null null null null null " +
+              "null null, 2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦," +
+              " 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null null " +
+              "null null null, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, " +
+              "6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null null " +
+              "null null null null, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣," +
+              " 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, " +
+              "5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, " +
+              "2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null null " +
+              "null null null null null null, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, " +
+              "6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null " +
+              "null null null null null null null null, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦," +
+              " 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, " +
+              "9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null" +
+              " null null null null null null null null null, 4♦, 4♠, 5♥, 5♣, " +
+              "5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣," +
+              " 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null, 4♠, 5♥," +
+              " 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, " +
+              "9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null null, 5♥, " +
+              "5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, " +
+              "9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null " +
+              "null null null null null null null null null null null null, 5♣, " +
+              "5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, " +
+              "9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null " +
+              "null null null null null null null null null null null null null, " +
+              "5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣," +
+              " 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null " +
+              "null null, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, " +
+              "9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null null " +
+              "null null null null null null null null null null null null null " +
+              "null, 6♥, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, " +
+              "9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null null " +
+              "null null null null null, 6♣, 6♦, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥, " +
+              "8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null " +
+              "null null null null null null null null null null null " +
+              "null null null null null null null null, 6♦, 6♠, 7♥, " +
+              "7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null null" +
+              " null null null null null null null, 6♠, 7♥, 7♣, 7♦, 7♠, 8♥," +
+              " 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null" +
+              " null null null null null null null null null null null null" +
+              " null null null null null null null null, 7♥, 7♣, 7♦, 7♠, 8♥, " +
+              "8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null null null " +
+              "null null null null null null null null, 7♣, 7♦, 7♠, 8♥, 8♣," +
+              " 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null " +
+              "null null null null null null null null null, 7♦, 7♠, 8♥, 8♣, " +
+              "8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null null " +
+              "null null null null null null null null null null null, 7♠, " +
+              "8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null" +
+              " null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null, " +
+              "8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null " +
+              "null null null null null null null null null null null null " +
+              "null null null null null null null null null null null null " +
+              "null null, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null " +
+              "null null null null null null null null null null null null " +
+              "null null null null null null null null null null null " +
+              "null null null null, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null" +
+              " null null null, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null" +
+              " null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null" +
+              " null null null null, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null" +
+              " null null null null null null null null null null null null " +
+              "null null null null null null null null null null null null null" +
+              " null null null null, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null" +
+              " null null null null, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null" +
+              " null null null null null, 9♠, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null" +
+              " null null null null null, 2♦, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null " +
+              "null null null null null null null, 2♠, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null " +
+              "null null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null" +
+              " null null null null null null null null null, J♥, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null" +
+              " null null null null null null null null, J♣, J♦\n" +
+              "Score: 11\n" +
+              "  10♣\n" +
+              "A♣\n" +
+              "Draw: null null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null null" +
+              " null null null null null null null null null null null null null null" +
+              " null null null null null null, J♦\n" +
               "Score: 11\n" +
               "Game over. Score: 11")};
 
@@ -796,5 +1097,14 @@ public class BasicPyramidSolitaireControllerTest {
     model.getDrawCards();
     assertEquals("The getDrawCards() method was called.",
             log.toString());
+  }
+
+  @Test(expected = IllegalStateException.class)
+  public void testInputsMocked() throws IOException {
+    //test the MockAppendable
+    //Scanner catches readable exceptions so there is no need to test a MockReadable.
+    new PyramidSolitaireTextualController(new StringReader("rm1 1 1"), new MockAppendable())
+            .playGame(this.bps, this.deck1, false, 2, 1);
+
   }
 }

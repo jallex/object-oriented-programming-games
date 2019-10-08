@@ -59,7 +59,7 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
             num2 = theseInputs[1] - 1;
             try {
               model.remove(num1, num2);
-              if(model.isGameOver() || model.getScore() == 0) {
+              if (model.isGameOver() || model.getScore() == 0) {
                 break;
               }
               else {
@@ -81,7 +81,7 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
             num4 = theseInputs[3] - 1;
             try {
               model.remove(num1, num2, num3, num4);
-              if(model.isGameOver() || model.getScore() == 0) {
+              if (model.isGameOver() || model.getScore() == 0) {
                 break;
               }
               else {
@@ -102,7 +102,7 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
             num3 = theseInputs[2] - 1;
             try {
               model.removeUsingDraw(num1, num2, num3);
-              if(model.isGameOver() || model.getScore() == 0) {
+              if (model.isGameOver() || model.getScore() == 0) {
                 break;
               }
               else {
@@ -121,7 +121,7 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
             num1 = theseInputs[0] - 1;
             try {
               model.discardDraw(num1);
-              if(model.isGameOver() || model.getScore() == 0) {
+              if (model.isGameOver() || model.getScore() == 0) {
                 break;
               }
               else {
@@ -140,6 +140,7 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
           default:
             this.ap.append("Please re-enter a valid input.\n");
             exceptionThrownDoNotPrint = true;
+            break;
         }
         if (!exceptionThrownDoNotPrint) {
           renderMove(model);

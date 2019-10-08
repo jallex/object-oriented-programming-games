@@ -5,7 +5,7 @@ package cs3500.pyramidsolitaire.model.hw02;
  */
 public final class Card extends ACard {
 
-  private final int num; //can make these public? BUt make the value of a Card an enum
+  private final int num;
   private final Type type;
 
   /**
@@ -91,16 +91,6 @@ public final class Card extends ACard {
   @Override
   public int hashCode() {
     return this.num;
-  }
-
-  @Override
-  public boolean isEmptyCard() {
-    return false;
-  }
-
-  @Override
-  public boolean isKing() {
-    return this.num == 13;
   }
 
   @Override

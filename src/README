@@ -1,0 +1,22 @@
+Changes to assignment 2:
+
+
+I have updated my view to have the correct number of spaces between cards and to have Score: always written on the bottom
+
+I have added calling new helpers IllegalArgumentExceptions to the three types of remove methods to account for the case where the user inputs values for the row and card of the card they want to remove that is not within the scope of the pyramid. (less than 0 or greater than the size of the row/card)
+
+Added a test to the BasicPyramidSolitaireTest class to test that the shuffle deck is working when start game is called @ line 259
+
+I got rid of my EmptyCard class and replaced the notion of having no card with null
+
+Updated Basic Pyramid Solitaire Comment
+
+Made the fields in Card class private final
+
+Got rid of isKing method for Cards
+
+Got rid of addsTo13 method for Cards
+
+Put tests in the default package
+
+

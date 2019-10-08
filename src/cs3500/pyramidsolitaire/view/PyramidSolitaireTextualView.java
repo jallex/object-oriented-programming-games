@@ -54,7 +54,7 @@ public class PyramidSolitaireTextualView implements PyramidSolitaireView {
         stringModel.append(whiteSpace);
         for (int j = 0; j <= lastNonNull; j++) {
           if (j != lastNonNull) {
-            if(model.getCardAt(i, j) == null) {
+            if (model.getCardAt(i, j) == null) {
               c = "   ";
             } else {
               c = padChar(model.getCardAt(i, j).toString());
