@@ -10,6 +10,7 @@ import cs3500.pyramidsolitaire.model.hw02.Card;
 import cs3500.pyramidsolitaire.model.hw02.ICard;
 import cs3500.pyramidsolitaire.model.hw02.PyramidSolitaireModel;
 import cs3500.pyramidsolitaire.model.hw02.Type;
+import cs3500.pyramidsolitaire.model.hw04.Relaxed;
 import cs3500.pyramidsolitaire.view.PyramidSolitaireTextualView;
 
 import static org.junit.Assert.assertEquals;
@@ -20,10 +21,9 @@ import static org.junit.Assert.assertEquals;
 public class BasicPyramidSolitaireViewTest {
   PyramidSolitaireModel bps;
   PyramidSolitaireModel bps2;
-  PyramidSolitaireModel bps3;
+  Relaxed bps3;
   //Create parts of the game for testing
   List<ICard> deck1;
-  List<ICard> deck1Removed;
   ICard[][] pyramid;
   ArrayList<ICard> draw;
 
@@ -103,6 +103,7 @@ public class BasicPyramidSolitaireViewTest {
 
     this.bps = new BasicPyramidSolitaire();
     this.bps2 = new BasicPyramidSolitaire();
+    this.bps3 = new Relaxed();
     this.view = new PyramidSolitaireTextualView(this.bps);
     this.view2 = new PyramidSolitaireTextualView(this.bps2);
   }
@@ -126,5 +127,13 @@ public class BasicPyramidSolitaireViewTest {
                     "  10♠\n" +
                     "    2♠  3♥\n" +
                     "Draw:", this.view2.toString());
+    this.bps3.startGame(this.deck1, false, 4, 2);
+    this.view = new PyramidSolitaireTextualView(this.bps3);
+    assertEquals(
+            "      A♥\n" +
+                    "    A♣  A♦\n" +
+                    "  A♠  2♥  2♣\n" +
+                    "2♦  2♠  3♥  3♣\n" +
+                    "Draw: 3♦, 3♠", this.view.toString());
   }
 }

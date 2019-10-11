@@ -81,8 +81,8 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     if (cardFirst == null
             || cardSecond == null
             || (cardFirst.score() + cardSecond.score() != 13)
-            || !(this.isUncovered(row1, card1))
-            || !(this.isUncovered(row2, card2))) {
+            || !(this.isUncoveredTwoCard(row1, card1, row2, card2))
+            || !(this.isUncoveredTwoCard(row2, card2, row1, card1))) {
       throw new IllegalArgumentException("This move is not legal- cards must be uncovered and " +
               "add to 13.");
     } else {
@@ -265,16 +265,16 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     if (numRows < 1) {
       throw new IllegalArgumentException("The number of rows must be >= 2");
     }
-    if (numDraw > 52 - this.getPyramidSize(numRows)) {
+
+    if (numDraw > deck.size() - this.getPyramidSize(numRows)) {
       throw new IllegalArgumentException("Number of draw cards cannot be greater than the stock.");
     }
 
     //put ICards into an ArrayList in the same order
     ArrayList<ICard> deckArray = new ArrayList<ICard>(deck);
 
-    //checks if deck is valid: model must have 52 cards, no duplicate cards, no EmptyCards
-    if (!(hasNoRepeatsOrEmpty(deckArray)
-            && deckArray.size() == 52)) {
+    //checks if deck is valid
+    if (this.isNotValidDeck(deckArray)) {
       throw new IllegalArgumentException("This is not a valid deck.");
     }
 
@@ -310,7 +310,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    * @param rows the number of rows in the pyramid.
    * @return the initial Pyramid containing ICards for the game
    */
-  private ICard[][] initializePyramid(int rows) {
+  protected ICard[][] initializePyramid(int rows) {
     ICard[][] pyrLayout = new ICard[rows][];
     //the number of cards we are putting in current row
     int numCardsPerRow = 1;
@@ -329,7 +329,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    * @return An Array of Cards
    * @throws IllegalArgumentException if not enough cards in the stock to create a pyramid
    */
-  private ICard[] createRow(int numCardsPerRow) {
+  protected ICard[] createRow(int numCardsPerRow) {
     ICard[] thisRow = new ICard[numCardsPerRow];
     int index = 0;
     for (int i = 0; i < numCardsPerRow; i++) {
@@ -352,7 +352,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    * @param card the number card in the row
    * @return whether the card at this location is Uncovered.
    */
-  private boolean isUncovered(int row, int card) {
+  protected boolean isUncovered(int row, int card) {
     if (row == pyramid.length - 1) {
       return true;
     }
@@ -361,6 +361,10 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     }
     return pyramid[row + 1][card] == null
             && pyramid[row + 1][card + 1] == null;
+  }
+
+  protected boolean isUncoveredTwoCard(int row1, int card1, int row2, int card2) {
+    return isUncovered(row1, card1);
   }
 
   /**
@@ -498,5 +502,16 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
       }
     }
     return true;
+  }
+
+  /**
+   * Returns is the inputted ArrayList of ICards is not a valid deck.
+   * @param deckArray the deck of ICards
+   * @return if the deck of ICards is not valid.
+   */
+  protected boolean isNotValidDeck(ArrayList<ICard> deckArray) {
+    //checks if deck is valid: model must have 52 cards, no duplicate cards, no EmptyCards
+    return !(hasNoRepeatsOrEmpty(deckArray)
+            && deckArray.size() == 52);
   }
 }
