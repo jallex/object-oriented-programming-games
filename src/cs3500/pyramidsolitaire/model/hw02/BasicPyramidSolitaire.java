@@ -183,6 +183,14 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     return this.pyramid[row].length;
   }
 
+  /**
+   * Returns if the game has been started.
+   * @return true if the game is started.
+   */
+  protected boolean isGameStarted() {
+    return this.gameStarted;
+  }
+
   @Override
   public boolean isGameOver() throws IllegalStateException {
     //stock pile empty
@@ -283,12 +291,13 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
       Collections.shuffle(deckArray, this.rand);
     }
 
-    //create the stock pile
-    this.stock = deckArray;
 
     //Use stock pile to set up the pyramid
-    this.pyramid = this.initializePyramid(numRows);
+    this.pyramid = this.initializePyramid(numRows, deckArray);
 
+
+    //create the stock pile
+    this.stock = deckArray;
 
     //create the current Draw
     ICard[] draw = new ICard[numDraw];
@@ -310,13 +319,13 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    * @param rows the number of rows in the pyramid.
    * @return the initial Pyramid containing ICards for the game
    */
-  protected ICard[][] initializePyramid(int rows) {
+  protected ICard[][] initializePyramid(int rows, ArrayList<ICard> deckArray) {
     ICard[][] pyrLayout = new ICard[rows][];
     //the number of cards we are putting in current row
     int numCardsPerRow = 1;
     //the index of the card in the stock we are placing into the pyramid
     for (int i = 0; i < rows; i++) {
-      pyrLayout[i] = this.createRow(numCardsPerRow);
+      pyrLayout[i] = this.createRow(numCardsPerRow, deckArray);
       numCardsPerRow += 1;
     }
     return pyrLayout;
@@ -329,14 +338,14 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    * @return An Array of Cards
    * @throws IllegalArgumentException if not enough cards in the stock to create a pyramid
    */
-  protected ICard[] createRow(int numCardsPerRow) {
+  protected ICard[] createRow(int numCardsPerRow, ArrayList<ICard> deckArray) {
     ICard[] thisRow = new ICard[numCardsPerRow];
     int index = 0;
     for (int i = 0; i < numCardsPerRow; i++) {
-      if (this.stock.size() > 0) {
-        thisRow[index] = this.stock.get(0);
+      if (deckArray.size() > 0) {
+        thisRow[index] = deckArray.get(0);
         //remove the card we just used from the stock
-        this.stock.remove(0);
+        deckArray.remove(0);
         index += 1;
       } else {
         throw new IllegalArgumentException("Not enough cards in the stock to create pyramid.");
@@ -400,7 +409,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    *
    * @return if there are still moves left to be made in the game.
    */
-  private boolean isMore13Pair() {
+  protected boolean isMore13Pair() {
     ArrayList<ICard> exposed = this.findExposedCards();
     return this.exposedAddTo13(exposed)
             || this.drawAndExposedAddTo13(exposed);
@@ -411,7 +420,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    *
    * @return an ArrayList of the uncovered Cards on the pyramid
    */
-  private ArrayList<ICard> findExposedCards() {
+  protected ArrayList<ICard> findExposedCards() {
     ArrayList<ICard> exposed = new ArrayList<ICard>();
     for (int i = 0; i < this.pyramid.length; i++) {
       for (int j = 0; j < this.pyramid[i].length; j++) {
@@ -429,7 +438,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    * @param exposed the exposed Cards on the pyramid
    * @return if there are 2 exposed Cards on the pyramid that add to 13.
    */
-  private boolean exposedAddTo13(ArrayList<ICard> exposed) {
+  protected boolean exposedAddTo13(ArrayList<ICard> exposed) {
     for (int i = 0; i < exposed.size(); i++) {
       for (int j = 0; j < exposed.size(); j++) {
         if (i != j
@@ -449,7 +458,7 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
    * @param exposed the Cards on the Pyramid that are exposed/revealed
    * @return if the player can make a move using a Card from the draw pile and an exposed card.
    */
-  private boolean drawAndExposedAddTo13(ArrayList<ICard> exposed) {
+  protected boolean drawAndExposedAddTo13(ArrayList<ICard> exposed) {
     for (int i = 0; i < exposed.size(); i++) {
       for (int j = 0; j < this.currentDraw.length; j++) {
         if (this.currentDraw[j] != null) {

@@ -2,6 +2,7 @@ package cs3500.pyramidsolitaire.model.hw04;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import cs3500.pyramidsolitaire.model.hw02.BasicPyramidSolitaire;
 import cs3500.pyramidsolitaire.model.hw02.Card;
@@ -9,6 +10,19 @@ import cs3500.pyramidsolitaire.model.hw02.ICard;
 import cs3500.pyramidsolitaire.model.hw02.Type;
 
 public class TriPeaks extends BasicPyramidSolitaire {
+
+  public TriPeaks() {
+    super();
+  }
+
+  public TriPeaks(ArrayList<ICard> stock, ICard[][] pyramid,
+                  ICard[] currentDraw, boolean gameStarted, Random rand) {
+    super(stock, pyramid, currentDraw, gameStarted, rand);
+  }
+
+  public TriPeaks(Random rand) {
+    super(rand);
+  }
 
   @Override
   public List<ICard> getDeck() {
@@ -34,8 +48,9 @@ public class TriPeaks extends BasicPyramidSolitaire {
   }
 
   /**
-   * Returns if this deck is valid concerning the number of copies of cards in the deck.
-   * There must be one other copy of the card in the deck, and the cards cannot be null.
+   * Returns if this deck is valid concerning the number of copies of cards in the deck. There must
+   * be one other copy of the card in the deck, and the cards cannot be null.
+   *
    * @param deckArray the deck that we are checking for copies and nulls.
    * @return true if the deck is valid.
    */
@@ -61,34 +76,208 @@ public class TriPeaks extends BasicPyramidSolitaire {
     return true;
   }
 
-  //Questions: how to deal with the stock, how to return the new updated stock
+  //Questions: test the new exceptions of decks
+  //remake getRowWidth
+  /**
+   @Override
+   protected ICard[][] initializePyramid(int rows, ArrayList<ICard> deckArray) {
+   ICard[][] pyrLayout = new ICard[rows][];
+   //find the number of cards that should be on the bottom level of the pyramid.
+   //7 x 7 pyramid -
+   //row + 1 / 2
+   int bottomRowAmt = this.findBottomRow(rows - 1);
+   int fullRowsBeforePeaks = (rows + 1) / 2;
+   for (int i = rows - 1; i >= fullRowsBeforePeaks - 1; i--) {
+   pyrLayout[i] = this.createRow(bottomRowAmt, deckArray);
+   bottomRowAmt -= 1;
+   }
+   //the number of nulls in between each split off pyramid
+   int numNullSpaced = 1;
+   for (int i = fullRowsBeforePeaks; i >= 0; i--) {
+   pyrLayout[i] = this.createBranchingRow(bottomRowAmt, deckArray, numNullSpaced);
+   bottomRowAmt -= 1;
+   numNullSpaced += 1;
+   }
+   return pyrLayout;
+   }
 
+   protected ICard[] createBranchingRow(int numCardsPerRow, ArrayList<ICard> deckArray,
+   int numNullSpaced) {
+   ICard[] thisRow = new ICard[numCardsPerRow];
+   int index = 0;
+   //the number of Cards between each gap of nulls in the row
+   int numCardsSpaced = (numCardsPerRow - (2 * numNullSpaced)) / 3;
+   for (int i = 1; i <= 5; i++) {
+   //Place nulls
+   if (i % 2 == 0) {
+   for (int j = 0; j < numNullSpaced; j++) {
+   if (index <= numCardsPerRow - 1) {
+   thisRow[index] = null;
+   index += 1;
+   }
+   }
+   } else { //place Cards
+   for (int j = 0; j < numCardsSpaced; j++) {
+   if (deckArray.size() > 0 && index <= numCardsPerRow - 1) {
+   thisRow[index] = deckArray.get(0);
+   //remove the card we just used from the stock
+   deckArray.remove(0);
+   index += 1;
+   } else {
+   throw new IllegalArgumentException("Not enough cards in the stock to create pyramid.");
+   }
+   }
+   }
+   }
+   return thisRow;
+   }
+   **/
 
-  protected ICard[][] initializePyramid(int rows) {
+  @Override
+  protected ICard[][] initializePyramid(int rows, ArrayList<ICard> deckArray) {
     ICard[][] pyrLayout = new ICard[rows][];
-    //the number of cards we are putting in current row
-    int numCardsPerRow = 1;
-    //the index of the card in the stock we are placing into the pyramid
-    for (int i = rows; i <= 0; i--) {
-      pyrLayout[i] = this.createRow(numCardsPerRow);
-      numCardsPerRow += 1;
+    //the total number of nulls in the 0 indexed row
+    int numNulls;
+    if (rows <= 3) {
+      numNulls = 0;
+    } else {
+      numNulls = (rows) / 2 - 1;
+    }
+
+    //the current index row of the pyramid.
+    int index = 0;
+
+    int numCardsInRow;
+    if (rows == 1) {
+      numCardsInRow = 1;
+    }
+    else {
+      numCardsInRow = numCardsInRow(index);
+    }
+
+    //the number of consecutive cards in a group of cards where 3 groups are in a row
+    int conseqCards = numCardsInRow / 3;
+
+    //the number of consecutive nulls in a group of nulls where 2 groups of nulls are in a row
+    int conseqNulls = numNulls - index;
+
+    int numPyramidRowsTriPeaks = (rows - 1) / 2;
+
+    //the row width
+    int rowWidth;
+    if (conseqNulls <= 0) {
+      rowWidth = numCardsInRow;
+    } else {
+      rowWidth = numCardsInRow + 2 * conseqNulls;
+    }
+
+    for (int i = 0; i < numPyramidRowsTriPeaks; i++) {
+      pyrLayout[i] = this.createBranchingRow(index, conseqCards, conseqNulls, deckArray, rowWidth);
+      index += 1;
+      conseqCards = this.numCardsInRow(index) / 3;
+      conseqNulls = numNulls - index;
+      rowWidth += 1;
+    }
+
+    for (int i = numPyramidRowsTriPeaks; i < rows; i++) {
+      pyrLayout[i] = this.createRow(rowWidth, deckArray);
+      rowWidth += 1;
     }
     return pyrLayout;
   }
 
-  protected ICard[] createRow(int numCardsPerRow) {
-    ICard[] thisRow = new ICard[numCardsPerRow];
-    int index = 0;
-    for (int i = 0; i < numCardsPerRow; i++) {
-      if (this.stock.size() > 0) {
-        thisRow[index] = this.stock.get(0);
-        //remove the card we just used from the stock
-        this.stock.remove(0);
-        index += 1;
-      } else {
-        throw new IllegalArgumentException("Not enough cards in the stock to create pyramid.");
+  private ICard[] createBranchingRow(int rowNum, int conseqCards, int conseqNulls,
+                                       ArrayList<ICard> deckArray, int rowWidth) {
+    int rowIndex = 0;
+    ICard[] thisRow = new ICard[rowWidth];
+    if (conseqNulls < 1) {
+      for (int i = 0; i < conseqCards * 3; i++) {
+        if (deckArray.size() > 0) {
+          thisRow[rowIndex] = deckArray.get(0);
+          //remove the card we just used from the stock
+          deckArray.remove(0);
+          rowIndex += 1;
+        } else {
+          throw new IllegalArgumentException("Not enough cards in the stock to create pyramid.");
+        }
+      }
+      return thisRow;
+    }
+
+    for (int i = 1; i <= 5; i++) {
+      //Place nulls
+      if (i % 2 == 0) {
+        for (int j = 0; j < conseqNulls; j++) {
+          thisRow[rowIndex] = null;
+          rowIndex += 1;
+        }
+      } else { //place Cards
+        for (int j = 0; j < conseqCards; j++) {
+          if (deckArray.size() > 0) {
+            thisRow[rowIndex] = deckArray.get(0);
+            //remove the card we just used from the stock
+            deckArray.remove(0);
+            rowIndex += 1;
+          } else {
+            throw new IllegalArgumentException("Not enough cards in the stock to create pyramid.");
+          }
+        }
       }
     }
     return thisRow;
+  }
+
+  /**
+   @Override
+   public int getRowWidth(int row) {
+   if (!this.isGameStarted()) {
+   throw new IllegalStateException("Game has not started, cannot get row width.");
+   } else if (row < 0
+   || row > this.getNumRows() - 1) {
+   throw new IllegalArgumentException("This row is not valid. Must be > -1 and " +
+   "< pyramid length");
+   }
+   //the total number of nulls in the 0 indexed row
+   int numNulls;
+   if (this.getNumRows() <= 3) {
+   numNulls = 0;
+   } else {
+   numNulls = this.getNumRows() / 2 - 1;
+   }
+
+   //number of cards in the row for the tripeaks section of pyramid
+   int numCardsInRow = 3 * (row + 1);
+
+   //the number of consecutive nulls in a group of nulls where 2 groups of nulls are in a row
+   int conseqNulls = numNulls - row;
+
+   int numPyramidRowsTriPeaks = (this.getNumRows() - 1) / 2;
+
+   //the row width
+   int rowWidth;
+   if (row < numPyramidRowsTriPeaks) {
+   if (conseqNulls <= 0) {
+   rowWidth = numCardsInRow;
+   } else {
+   rowWidth = numCardsInRow + 2 * conseqNulls;
+   }
+   }
+   else {
+
+   }
+   return rowWidth;
+   }
+
+   private int findBottomRow(int numRows) {
+   if (numRows == 0) {
+   return 7;
+   }
+   return 1 + this.findBottomRow(numRows - 1);
+   }
+   */
+
+  //number of cards in the row for the tripeaks section of pyramid
+  private int numCardsInRow(int index) {
+    return 3 * (index + 1);
   }
 }

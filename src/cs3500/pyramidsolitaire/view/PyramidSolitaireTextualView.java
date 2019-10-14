@@ -34,10 +34,10 @@ public class PyramidSolitaireTextualView implements PyramidSolitaireView {
       return "Game over. Score: " + model.getScore();
     }
     StringBuilder stringModel = new StringBuilder();
-    int numlength = model.getRowWidth(model.getNumRows() - 1) * 2;
-    String whiteSpace = "";
+    int numlength = model.getNumRows() - 1;
+    String whiteSpace = "  ";
     for (int i = 0; i < numlength; i++) {
-      whiteSpace += " ";
+      whiteSpace += "  ";
     }
     String c = "";
     int lengthPreceeding = 0;
@@ -49,7 +49,9 @@ public class PyramidSolitaireTextualView implements PyramidSolitaireView {
           lastNonNull = j;
         }
       }
-      whiteSpace = whiteSpace.substring(2);
+      if (whiteSpace.length() > 1) {
+        whiteSpace = whiteSpace.substring(2);
+      }
       if (lastNonNull != -1) {
         stringModel.append(whiteSpace);
         for (int j = 0; j <= lastNonNull; j++) {
