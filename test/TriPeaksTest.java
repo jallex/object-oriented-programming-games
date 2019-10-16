@@ -19,7 +19,6 @@ import static org.junit.Assert.assertEquals;
 public class TriPeaksTest {
   //Create parts of the game for testing
   List<ICard> deck1;
-  List<ICard> deck1Removed;
   ICard[][] pyramid;
   ICard[] draw;
 
@@ -163,49 +162,6 @@ public class TriPeaksTest {
     deck1.add(new Card(13, Type.CLUBS));
     deck1.add(new Card(13, Type.DIAMONDS));
     deck1.add(new Card(13, Type.SPADES));
-
-    //The stock pile
-    this.deck1Removed = new ArrayList<ICard>();
-    deck1Removed.add(new Card(4, Type.HEARTS));
-    deck1Removed.add(new Card(4, Type.CLUBS));
-    deck1Removed.add(new Card(4, Type.DIAMONDS));
-    deck1Removed.add(new Card(4, Type.SPADES));
-    deck1Removed.add(new Card(5, Type.HEARTS));
-    deck1Removed.add(new Card(5, Type.CLUBS));
-    deck1Removed.add(new Card(5, Type.DIAMONDS));
-    deck1Removed.add(new Card(5, Type.SPADES));
-    deck1Removed.add(new Card(6, Type.HEARTS));
-    deck1Removed.add(new Card(6, Type.CLUBS));
-    deck1Removed.add(new Card(6, Type.DIAMONDS));
-    deck1Removed.add(new Card(6, Type.SPADES));
-    deck1Removed.add(new Card(7, Type.HEARTS));
-    deck1Removed.add(new Card(7, Type.CLUBS));
-    deck1Removed.add(new Card(7, Type.DIAMONDS));
-    deck1Removed.add(new Card(7, Type.SPADES));
-    deck1Removed.add(new Card(8, Type.HEARTS));
-    deck1Removed.add(new Card(8, Type.CLUBS));
-    deck1Removed.add(new Card(8, Type.DIAMONDS));
-    deck1Removed.add(new Card(8, Type.SPADES));
-    deck1Removed.add(new Card(9, Type.HEARTS));
-    deck1Removed.add(new Card(9, Type.CLUBS));
-    deck1Removed.add(new Card(9, Type.DIAMONDS));
-    deck1Removed.add(new Card(9, Type.SPADES));
-    deck1Removed.add(new Card(10, Type.HEARTS));
-    deck1Removed.add(new Card(10, Type.CLUBS));
-    deck1Removed.add(new Card(10, Type.DIAMONDS));
-    deck1Removed.add(new Card(10, Type.SPADES));
-    deck1Removed.add(new Card(11, Type.HEARTS));
-    deck1Removed.add(new Card(11, Type.CLUBS));
-    deck1Removed.add(new Card(11, Type.DIAMONDS));
-    deck1Removed.add(new Card(11, Type.SPADES));
-    deck1Removed.add(new Card(12, Type.HEARTS));
-    deck1Removed.add(new Card(12, Type.CLUBS));
-    deck1Removed.add(new Card(12, Type.DIAMONDS));
-    deck1Removed.add(new Card(12, Type.SPADES));
-    deck1Removed.add(new Card(13, Type.HEARTS));
-    deck1Removed.add(new Card(13, Type.CLUBS));
-    deck1Removed.add(new Card(13, Type.DIAMONDS));
-    deck1Removed.add(new Card(13, Type.SPADES));
 
     //Pyramid
     this.pyramid = new ICard[4][];

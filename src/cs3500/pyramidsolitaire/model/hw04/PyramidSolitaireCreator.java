@@ -4,15 +4,15 @@ import cs3500.pyramidsolitaire.model.hw02.BasicPyramidSolitaire;
 import cs3500.pyramidsolitaire.model.hw02.PyramidSolitaireModel;
 
 public class PyramidSolitaireCreator {
-  public enum Gametype {
+  public enum GameType {
     BASIC, RELAXED, TRIPEAKS;
   }
 
-  static <GameType> PyramidSolitaireModel create(GameType type) {
+  public static <GameType> PyramidSolitaireModel create(GameType type) {
     PyramidSolitaireModel model;
-    if (type == Gametype.BASIC) {
+    if (type == PyramidSolitaireCreator.GameType.BASIC) {
       model = new BasicPyramidSolitaire();
-    } else if (type == Gametype.RELAXED) {
+    } else if (type == PyramidSolitaireCreator.GameType.RELAXED) {
       model = new Relaxed();
     } else {
       model = new TriPeaks();
