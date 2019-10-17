@@ -257,6 +257,11 @@ public class BasicPyramidSolitaireControllerTest {
   @Test
   public void testRemove() throws IOException {
     Interaction[] remove1Card = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+        "    A♣  A♦\n" +
+        "  A♠  2♥  2♣\n" +
+        "10♦ 10♠ 3♥  K♣\n" +
+        "Draw: 3♦, 3♠"),
       new InputInteraction("rm1 "),
       new InputInteraction("4 "),
       new InputInteraction("4 "),
@@ -312,6 +317,11 @@ public class BasicPyramidSolitaireControllerTest {
   @Test
   public void testRemoveException() throws IOException {
     Interaction[] discardDraw = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("dd"),
       new InputInteraction("4"),
       new PrintInteraction("Invalid move. Play again. Discard draw not valid."),
@@ -332,6 +342,8 @@ public class BasicPyramidSolitaireControllerTest {
   //test if the game is won
   public void testGameWon() throws IOException {
     Interaction[] removeLast = new Interaction[]{
+      new PrintInteraction("3♥\n" +
+              "Draw: 10♣"),
       new InputInteraction("rmwd"),
       new InputInteraction("1"),
       new InputInteraction("1"),
@@ -344,6 +356,11 @@ public class BasicPyramidSolitaireControllerTest {
   //if there are no more moves left to be played
   public void testGameOver() throws IOException {
     Interaction[] removeLastPossible = new Interaction[]{
+      new PrintInteraction("  10♣\n" +
+              "A♣  3♣\n" +
+              "Draw: 10♥, Q♥, Q♣, Q♦, Q♠, K♥, K♦, K♣, K♠, 3♦, 3♠, 3♥, A♥, A♦, A♠, " +
+              "2♥, 2♣, 10♦, 10♠, 4♥, 4♣, 4♦, 4♠, 5♥, 5♣, 5♦, 5♠, 6♥, 6♣, 6♦, 6♠, 7♥, " +
+              "7♣, 7♦, 7♠, 8♥, 8♣, 8♦, 8♠, 9♥, 9♣, 9♦, 9♠, 2♦, 2♠, J♥, J♣, J♦"),
       new InputInteraction("rmwd"),
       new InputInteraction("1"),
       new InputInteraction("2"),
@@ -725,6 +742,12 @@ public class BasicPyramidSolitaireControllerTest {
   public void testGameQuit() throws IOException {
     //if the user quits
     Interaction[] quitq = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+        "    A♣  A♦\n" +
+        "  A♠  2♥  2♣\n" +
+        "10♦ 10♠ 3♥  K♣\n" +
+        "Draw: 3♦, 3♠"
+            ),
       new InputInteraction("q"),
       new PrintInteraction("Game quit!\n" +
         "State of game when quit:\n" +
@@ -743,6 +766,11 @@ public class BasicPyramidSolitaireControllerTest {
   public void testGameQuit2() throws IOException {
     //if user quits in the beginning of a move
     Interaction[] quitQ = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("Q"),
       new PrintInteraction("Game quit!\n" +
               "State of game when quit:\n" +
@@ -761,6 +789,11 @@ public class BasicPyramidSolitaireControllerTest {
   public void testGameQuit3() throws IOException {
     //if user quits in the beginning of a move
     Interaction[] quitQ = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("rm1 "),
       new InputInteraction("Q "),
       new PrintInteraction("Game quit!\n" +
@@ -780,6 +813,11 @@ public class BasicPyramidSolitaireControllerTest {
   public void testGameQuit5() throws IOException {
     //if user quits in the middle parameter of a move
     Interaction[] quitQ = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("rm2 "),
       new InputInteraction("1"),
       new InputInteraction("4 "),
@@ -800,6 +838,11 @@ public class BasicPyramidSolitaireControllerTest {
   public void testGameQuit4() throws IOException {
     //if user quits at the end of a move
     Interaction[] quitQ = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("rm2 "),
       new InputInteraction("1"),
       new InputInteraction("4 "),
@@ -821,6 +864,11 @@ public class BasicPyramidSolitaireControllerTest {
   public void testInvalid1() throws IOException {
     //if user types input other than q, Q, or a number
     Interaction[] invalid1 = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("rm1"),
       new InputInteraction("j"),
       new PrintInteraction("Please re-enter a valid input."),
@@ -848,6 +896,12 @@ public class BasicPyramidSolitaireControllerTest {
     testRun(this.bps, invalid1);
 
     Interaction[] invalid2 = new Interaction[]{
+      new PrintInteraction(
+              "      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("rm2"),
       new InputInteraction("4"),
       new InputInteraction("yenjend"),
@@ -881,6 +935,11 @@ public class BasicPyramidSolitaireControllerTest {
   public void testInvalidFromModel() throws IOException {
     //model indicates that a move is invalid
     Interaction[] invalidFromModel = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("rm1"),
       new InputInteraction("1"),
       new InputInteraction("4"),
@@ -902,6 +961,11 @@ public class BasicPyramidSolitaireControllerTest {
   public void testInvalidFromModel2() throws IOException {
     //model indicates that a move is invalid
     Interaction[] invalidFromModel = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("rm1"),
       new InputInteraction("1"),
       new InputInteraction("10"),
@@ -922,6 +986,11 @@ public class BasicPyramidSolitaireControllerTest {
   public void testInvalidMoveCall() throws IOException {
     //Move made is not a valid move
     Interaction[] invalidFromModel = new Interaction[]{
+      new PrintInteraction("      A♥\n" +
+              "    A♣  A♦\n" +
+              "  A♠  2♥  2♣\n" +
+              "10♦ 10♠ 3♥  K♣\n" +
+              "Draw: 3♦, 3♠"),
       new InputInteraction("j"),
       new PrintInteraction("Please re-enter a valid input."),
       new InputInteraction("lllllllll"),
@@ -979,17 +1048,6 @@ public class BasicPyramidSolitaireControllerTest {
     //If Appendable runs out in the middle of a move, should throw an illegal state exception
     Interaction[] readableRunsOut = new Interaction[]{
       new InputInteraction("rm2 "),
-      new InputInteraction("4 "),
-      new InputInteraction("4 "),
-    };
-    testRun(this.bps, readableRunsOut);
-  }
-
-  @Test(expected = IllegalStateException.class)
-  public void testReadableRunsOutBeginning() throws IOException {
-    //If Appendable runs out after a move without quit, should throw an illegal state exception
-    Interaction[] readableRunsOut = new Interaction[]{
-      new InputInteraction("rm1 "),
       new InputInteraction("4 "),
       new InputInteraction("4 "),
     };

@@ -14,7 +14,8 @@ import cs3500.pyramidsolitaire.view.PyramidSolitaireTextualView;
 import static org.junit.Assert.assertEquals;
 
 /**
- * A testing class, that uses {@link cs3500.pyramidsolitaire.model.hw04.TriPeaks} for all of its test cases.
+ * A testing class, that uses {@link cs3500.pyramidsolitaire.model.hw04.TriPeaks}
+ * for all of its test cases.
  */
 public class TriPeaksTest {
   //Create parts of the game for testing
@@ -170,10 +171,10 @@ public class TriPeaksTest {
     ICard[] row1 = {new Card(1, Type.CLUBS), new Card(1, Type.DIAMONDS)};
     this.pyramid[1] = row1;
     ICard[] row2 = {new Card(1, Type.SPADES), new Card(2, Type.HEARTS),
-            new Card(2, Type.CLUBS)};
+        new Card(2, Type.CLUBS)};
     this.pyramid[2] = row2;
     ICard[] row3 = {new Card(2, Type.DIAMONDS), new Card(2, Type.SPADES),
-            new Card(3, Type.HEARTS), new Card(3, Type.CLUBS)};
+        new Card(3, Type.HEARTS), new Card(3, Type.CLUBS)};
     this.pyramid[3] = row3;
 
     //Another Pyramid
@@ -183,7 +184,7 @@ public class TriPeaksTest {
     ICard[] row31 = {new Card(13, Type.CLUBS), new Card(1, Type.DIAMONDS)};
     this.pyramid3[1] = row31;
     ICard[] row32 = {new Card(8, Type.SPADES), new Card(5, Type.HEARTS),
-            new Card(13, Type.CLUBS)};
+        new Card(13, Type.CLUBS)};
     this.pyramid3[2] = row32;
 
     //Empty Pyramid
@@ -206,18 +207,18 @@ public class TriPeaksTest {
     ICard[] row21 = {new Card(13, Type.CLUBS), new Card(1, Type.DIAMONDS)};
     this.pyramid2[1] = row21;
     ICard[] row22 = {new Card(1, Type.SPADES), new Card(5, Type.HEARTS),
-            new Card(8, Type.CLUBS)};
+        new Card(8, Type.CLUBS)};
     this.pyramid2[2] = row22;
 
     this.draw2 = new ICard[1];
     this.draw2[0] = new Card(12, Type.CLUBS);
 
     this.bps2 = new TriPeaks(new ArrayList<ICard>(), this.pyramid2,
-            this.draw2, true, this.rand);
+        this.draw2, true, this.rand);
     this.bps3 = new TriPeaks(new ArrayList<ICard>(), this.pyramid3,
-            this.draw2, true, this.rand);
+        this.draw2, true, this.rand);
     this.bps6 = new TriPeaks(new ArrayList<ICard>(), this.pyramid,
-            new ICard[0], true, this.rand);
+        new ICard[0], true, this.rand);
 
     this.view = new PyramidSolitaireTextualView(this.bps2);
     this.view3 = new PyramidSolitaireTextualView(this.bps3);
@@ -235,20 +236,18 @@ public class TriPeaksTest {
     drawCards.add(new Card(5, Type.HEARTS));
     drawCards.add(new Card(6, Type.SPADES));
 
-    this.bps4 = new TriPeaks(drawCards, this.pyramid2,
-            cards, true, this.rand);
+    this.bps4 = new TriPeaks(drawCards, this.pyramid2, cards, true, this.rand);
 
     this.view4 = new PyramidSolitaireTextualView(this.bps4);
 
-    this.bps5 = new TriPeaks(drawCards, this.pyramid5,
-            cards, true, this.rand);
+    this.bps5 = new TriPeaks(drawCards, this.pyramid5, cards, true, this.rand);
     this.bps7 = new TriPeaks(new ArrayList<ICard>(), this.pyramid2,
-            this.draw2, false, this.rand);
+        this.draw2, false, this.rand);
     this.view5 = new PyramidSolitaireTextualView(this.bps);
   }
 
   @Test
-  public void startGame () {
+  public void startGame() {
     assertEquals("", this.view5.toString());
     this.bps.startGame(this.deck1, false, 7, 2);
     this.view4 = new PyramidSolitaireTextualView(this.bps);
@@ -263,7 +262,7 @@ public class TriPeaksTest {
   }
 
   @Test
-  public void startGameWith8Rows () {
+  public void startGameWith8Rows() {
     assertEquals("", this.view5.toString());
     this.bps.startGame(this.deck1, false, 8, 2);
     this.view4 = new PyramidSolitaireTextualView(this.bps);
@@ -279,7 +278,7 @@ public class TriPeaksTest {
   }
 
   @Test
-  public void startGameWith1Row () {
+  public void startGameWith1Row() {
     assertEquals("", this.view5.toString());
     this.bps.startGame(this.deck1, false, 1, 2);
     this.view4 = new PyramidSolitaireTextualView(this.bps);
@@ -288,7 +287,7 @@ public class TriPeaksTest {
   }
 
   @Test
-  public void startGameWith2Rows () {
+  public void startGameWith2Rows() {
     assertEquals("", this.view5.toString());
     this.bps.startGame(this.deck1, false, 2, 2);
     this.view4 = new PyramidSolitaireTextualView(this.bps);
@@ -298,7 +297,7 @@ public class TriPeaksTest {
   }
 
   @Test
-  public void startGameWith3Rows () {
+  public void startGameWith3Rows() {
     assertEquals("", this.view5.toString());
     this.bps.startGame(this.deck1, false, 3, 2);
     this.view4 = new PyramidSolitaireTextualView(this.bps);
@@ -309,7 +308,7 @@ public class TriPeaksTest {
   }
 
   @Test
-  public void startGameWithRandom () {
+  public void startGameWithRandom() {
     assertEquals("", this.view5.toString());
     this.bps = new TriPeaks(this.rand);
     this.bps.startGame(this.deck1, true, 4, 2);

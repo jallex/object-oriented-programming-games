@@ -81,8 +81,8 @@ public class BasicPyramidSolitaire implements PyramidSolitaireModel<ICard> {
     if (cardFirst == null
             || cardSecond == null
             || (cardFirst.score() + cardSecond.score() != 13)
-            || !(this.isUncoveredTwoCard(row1, card1, row2, card2))
-            || !(this.isUncoveredTwoCard(row2, card2, row1, card1))) {
+            || (!(this.isUncoveredTwoCard(row1, card1, row2, card2))
+            && !(this.isUncoveredTwoCard(row2, card2, row1, card1)))) {
       throw new IllegalArgumentException("This move is not legal- cards must be uncovered and " +
               "add to 13.");
     } else {

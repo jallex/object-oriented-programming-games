@@ -36,8 +36,11 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
     if (model == null) {
       throw new IllegalArgumentException("The model cannot be null.");
     }
+    PyramidSolitaireTextualView view = new PyramidSolitaireTextualView(model, ap);
     try {
       model.startGame(deck, shuffle, numRows, numDraw);
+      view.render();
+      this.ap.append("\n");
       Scanner scan = new Scanner(this.rd);
       String strInput = "";
       int[] theseInputs;
@@ -62,9 +65,6 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
               if (model.isGameOver() || model.getScore() == 0) {
                 break;
               }
-              else {
-                checkIfFailedToQuit(scan, model);
-              }
             } catch (IllegalArgumentException e) {
               this.ap.append("Invalid move. Play again. Remove not valid.\n");
               exceptionThrownDoNotPrint = true;
@@ -84,9 +84,6 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
               if (model.isGameOver() || model.getScore() == 0) {
                 break;
               }
-              else {
-                checkIfFailedToQuit(scan, model);
-              }
             } catch (IllegalArgumentException e) {
               this.ap.append("Invalid move. Play again. Remove not valid.\n");
               exceptionThrownDoNotPrint = true;
@@ -105,9 +102,6 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
               if (model.isGameOver() || model.getScore() == 0) {
                 break;
               }
-              else {
-                checkIfFailedToQuit(scan, model);
-              }
             } catch (IllegalArgumentException e) {
               this.ap.append("Invalid move. Play again. Remove with draw not valid.\n");
               exceptionThrownDoNotPrint = true;
@@ -123,9 +117,6 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
               model.discardDraw(num1);
               if (model.isGameOver() || model.getScore() == 0) {
                 break;
-              }
-              else {
-                checkIfFailedToQuit(scan, model);
               }
             } catch (IllegalArgumentException e) {
               this.ap.append("Invalid move. Play again. Discard draw not valid.\n");
@@ -143,7 +134,7 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
             break;
         }
         if (!exceptionThrownDoNotPrint) {
-          renderMove(model);
+          view.render();
           if (!(model.isGameOver() || model.getScore() == 0)) {
             this.ap.append("\nScore: " + model.getScore() + "\n");
           }
@@ -167,16 +158,6 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
   private void returnQuit() throws IOException {
     this.ap.append("Game quit!\n"
             + "State of game when quit:\n");
-  }
-
-  /**
-   * Appends the view of the latest model to the appendable.
-   * @param m the model
-   * @throws IOException if the rendering fails for some reason
-   */
-  private void renderMove(PyramidSolitaireModel m) throws IOException {
-    PyramidSolitaireTextualView view = new PyramidSolitaireTextualView(m, this.ap);
-    view.render();
   }
 
   /**
@@ -210,16 +191,5 @@ public class PyramidSolitaireTextualController implements PyramidSolitaireContro
       }
     }
     return myIntArray;
-  }
-
-  /**
-   * Throws an IllegalStateException if the Readable ran out before the user quit the game.
-   * @param scan The scanner
-   * @throws IllegalStateException if the Readable ran out and the user did not quit the game.
-   */
-  private void checkIfFailedToQuit(Scanner scan, PyramidSolitaireModel m) {
-    if (!scan.hasNext() && !m.isGameOver()) {
-      throw new IllegalStateException("User did not enter enough input to complete/quit game.");
-    }
   }
 }

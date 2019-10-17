@@ -9,17 +9,31 @@ import cs3500.pyramidsolitaire.model.hw02.Card;
 import cs3500.pyramidsolitaire.model.hw02.ICard;
 import cs3500.pyramidsolitaire.model.hw02.Type;
 
+/**
+ *Represents a version of Pyramid Solitaire in which the board has three pyramids that intersect
+ * for half their height, rounding up.
+ */
 public class TriPeaks extends BasicPyramidSolitaire {
 
+  /**
+   * Constructs a {@code TriPeaks} object.
+   */
   public TriPeaks() {
     super();
   }
 
+  /**
+   * Constructs a {@code BasicPyramidSolitaire} object with more parameters for testing.
+   */
   public TriPeaks(ArrayList<ICard> stock, ICard[][] pyramid,
                   ICard[] currentDraw, boolean gameStarted, Random rand) {
     super(stock, pyramid, currentDraw, gameStarted, rand);
   }
 
+
+  /**
+   * Constructs a {@code BasicPyramidSolitaire} object with a random parameter for testing.
+   */
   public TriPeaks(Random rand) {
     super(rand);
   }
@@ -76,63 +90,6 @@ public class TriPeaks extends BasicPyramidSolitaire {
     return true;
   }
 
-  //Questions: test the new exceptions of decks
-  //remake getRowWidth
-  /**
-   @Override
-   protected ICard[][] initializePyramid(int rows, ArrayList<ICard> deckArray) {
-   ICard[][] pyrLayout = new ICard[rows][];
-   //find the number of cards that should be on the bottom level of the pyramid.
-   //7 x 7 pyramid -
-   //row + 1 / 2
-   int bottomRowAmt = this.findBottomRow(rows - 1);
-   int fullRowsBeforePeaks = (rows + 1) / 2;
-   for (int i = rows - 1; i >= fullRowsBeforePeaks - 1; i--) {
-   pyrLayout[i] = this.createRow(bottomRowAmt, deckArray);
-   bottomRowAmt -= 1;
-   }
-   //the number of nulls in between each split off pyramid
-   int numNullSpaced = 1;
-   for (int i = fullRowsBeforePeaks; i >= 0; i--) {
-   pyrLayout[i] = this.createBranchingRow(bottomRowAmt, deckArray, numNullSpaced);
-   bottomRowAmt -= 1;
-   numNullSpaced += 1;
-   }
-   return pyrLayout;
-   }
-
-   protected ICard[] createBranchingRow(int numCardsPerRow, ArrayList<ICard> deckArray,
-   int numNullSpaced) {
-   ICard[] thisRow = new ICard[numCardsPerRow];
-   int index = 0;
-   //the number of Cards between each gap of nulls in the row
-   int numCardsSpaced = (numCardsPerRow - (2 * numNullSpaced)) / 3;
-   for (int i = 1; i <= 5; i++) {
-   //Place nulls
-   if (i % 2 == 0) {
-   for (int j = 0; j < numNullSpaced; j++) {
-   if (index <= numCardsPerRow - 1) {
-   thisRow[index] = null;
-   index += 1;
-   }
-   }
-   } else { //place Cards
-   for (int j = 0; j < numCardsSpaced; j++) {
-   if (deckArray.size() > 0 && index <= numCardsPerRow - 1) {
-   thisRow[index] = deckArray.get(0);
-   //remove the card we just used from the stock
-   deckArray.remove(0);
-   index += 1;
-   } else {
-   throw new IllegalArgumentException("Not enough cards in the stock to create pyramid.");
-   }
-   }
-   }
-   }
-   return thisRow;
-   }
-   **/
-
   @Override
   protected ICard[][] initializePyramid(int rows, ArrayList<ICard> deckArray) {
     ICard[][] pyrLayout = new ICard[rows][];
@@ -172,7 +129,7 @@ public class TriPeaks extends BasicPyramidSolitaire {
     }
 
     for (int i = 0; i < numPyramidRowsTriPeaks; i++) {
-      pyrLayout[i] = this.createBranchingRow(index, conseqCards, conseqNulls, deckArray, rowWidth);
+      pyrLayout[i] = this.createBranchingRow(conseqCards, conseqNulls, deckArray, rowWidth);
       index += 1;
       conseqCards = this.numCardsInRow(index) / 3;
       conseqNulls = numNulls - index;
@@ -186,8 +143,16 @@ public class TriPeaks extends BasicPyramidSolitaire {
     return pyrLayout;
   }
 
-  private ICard[] createBranchingRow(int rowNum, int conseqCards, int conseqNulls,
-                                       ArrayList<ICard> deckArray, int rowWidth) {
+  /**
+   * Creates the row as an Array of ICard that does not intersect in the tripeak pyramid.
+   * @param conseqCards the number of consecutive cards in a row
+   * @param conseqNulls the number of consecutive nulls in a row
+   * @param deckArray the deck
+   * @param rowWidth the width of the row
+   * @return an Array of ICard that is the current row of the pyramid.
+   */
+  private ICard[] createBranchingRow(int conseqCards, int conseqNulls,
+                                     ArrayList<ICard> deckArray, int rowWidth) {
     int rowIndex = 0;
     ICard[] thisRow = new ICard[rowWidth];
     if (conseqNulls < 1) {
@@ -228,55 +193,10 @@ public class TriPeaks extends BasicPyramidSolitaire {
   }
 
   /**
-   @Override
-   public int getRowWidth(int row) {
-   if (!this.isGameStarted()) {
-   throw new IllegalStateException("Game has not started, cannot get row width.");
-   } else if (row < 0
-   || row > this.getNumRows() - 1) {
-   throw new IllegalArgumentException("This row is not valid. Must be > -1 and " +
-   "< pyramid length");
-   }
-   //the total number of nulls in the 0 indexed row
-   int numNulls;
-   if (this.getNumRows() <= 3) {
-   numNulls = 0;
-   } else {
-   numNulls = this.getNumRows() / 2 - 1;
-   }
-
-   //number of cards in the row for the tripeaks section of pyramid
-   int numCardsInRow = 3 * (row + 1);
-
-   //the number of consecutive nulls in a group of nulls where 2 groups of nulls are in a row
-   int conseqNulls = numNulls - row;
-
-   int numPyramidRowsTriPeaks = (this.getNumRows() - 1) / 2;
-
-   //the row width
-   int rowWidth;
-   if (row < numPyramidRowsTriPeaks) {
-   if (conseqNulls <= 0) {
-   rowWidth = numCardsInRow;
-   } else {
-   rowWidth = numCardsInRow + 2 * conseqNulls;
-   }
-   }
-   else {
-
-   }
-   return rowWidth;
-   }
-
-   private int findBottomRow(int numRows) {
-   if (numRows == 0) {
-   return 7;
-   }
-   return 1 + this.findBottomRow(numRows - 1);
-   }
+   * Returns the number of Cards in the row for the TriPeaks section of the pyramid.
+   * @param index the index row
+   * @return The number of Cards in the row at the given index
    */
-
-  //number of cards in the row for the tripeaks section of pyramid
   private int numCardsInRow(int index) {
     return 3 * (index + 1);
   }
