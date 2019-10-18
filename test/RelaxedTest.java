@@ -32,6 +32,8 @@ public class RelaxedTest {
   ICard[][] pyramid4v2;
   ICard[][] pyramid5;
   ICard[][] pyramid7;
+  ICard[][] pyramid9;
+  ICard[][] pyramid10;
 
   Relaxed bps;
   Relaxed bps2;
@@ -42,6 +44,8 @@ public class RelaxedTest {
   Relaxed bps6;
   Relaxed bps7;
   Relaxed bps8;
+  Relaxed bps9;
+  Relaxed bps10;
 
   PyramidSolitaireTextualView view;
   PyramidSolitaireTextualView view3;
@@ -49,7 +53,6 @@ public class RelaxedTest {
   PyramidSolitaireTextualView view4v2;
   PyramidSolitaireTextualView view5;
   PyramidSolitaireTextualView view6;
-  PyramidSolitaireTextualView view7;
 
   ICard[] cards;
   ArrayList<ICard> drawCards;
@@ -227,6 +230,22 @@ public class RelaxedTest {
         new Card(8, Type.CLUBS)};
     this.pyramid7[2] = row72;
 
+    this.pyramid9 = new ICard[3][];
+    ICard[] row91 = {null};
+    this.pyramid9[0] = row91;
+    ICard[] row92 = {null, null};
+    this.pyramid9[1] = row92;
+    ICard[] row93 = {null, null, null};
+    this.pyramid9[2] = row93;
+
+    this.pyramid10 = new ICard[3][];
+    ICard[] row101 = {new Card(3, Type.SPADES)};
+    this.pyramid10[0] = row101;
+    ICard[] row102 = {null, null};
+    this.pyramid10[1] = row102;
+    ICard[] row103 = {null, null, null};
+    this.pyramid10[2] = row103;
+
     this.bps4 = new Relaxed(drawCards, this.pyramid4,
             cards, true, this.rand);
     this.bps4v2 = new Relaxed(drawCards, this.pyramid4v2,
@@ -242,6 +261,10 @@ public class RelaxedTest {
     this.bps7 = new Relaxed(new ArrayList<ICard>(), this.pyramid4,
             new ICard[2], true, this.rand);
     this.bps8 = new Relaxed(new ArrayList<ICard>(), this.pyramid7,
+            new ICard[2], true, this.rand);
+    this.bps9 = new Relaxed(new ArrayList<ICard>(), this.pyramid9,
+            new ICard[2], true, this.rand);
+    this.bps10 = new Relaxed(new ArrayList<ICard>(), this.pyramid10,
             new ICard[2], true, this.rand);
   }
 
@@ -355,6 +378,7 @@ public class RelaxedTest {
 
   @Test
   public void testRemove2Cards() {
+    //has the same functionality as removing 2 cards in BasicPyramidSolitaire
     assertEquals("    Q♥\n"
             + "  K♣  A♦\n"
             + "A♠  5♥  8♣\n"
@@ -432,5 +456,13 @@ public class RelaxedTest {
   //Tries to remove a Card that is fully covered but fits other requirements in Relaxed game.
   public void testRemove2CardsException24() {
     this.bps8.remove(3, 1, 2, 1);
+  }
+
+  @Test
+  public void testIsGameOverLost() {
+    //if there are no more moves left
+    assertEquals(true, this.bps10.isGameOver());
+    //if the game is won
+    assertEquals(true, this.bps9.isGameOver());
   }
 }

@@ -28,7 +28,10 @@ public class TriPeaksTest {
 
   ICard[][] pyramid3;
 
+  ICard[][] pyramid4;
   ICard[][] pyramid5;
+  ICard[][] pyramid9;
+  ICard[][] pyramid10;
 
   TriPeaks bps;
   TriPeaks bps2;
@@ -37,11 +40,15 @@ public class TriPeaksTest {
   TriPeaks bps5;
   TriPeaks bps6;
   TriPeaks bps7;
+  TriPeaks bps8;
+  TriPeaks bps9;
+  TriPeaks bps10;
 
   PyramidSolitaireTextualView view;
   PyramidSolitaireTextualView view3;
   PyramidSolitaireTextualView view4;
   PyramidSolitaireTextualView view5;
+  PyramidSolitaireTextualView view8;
 
   ICard[] cards;
   ArrayList<ICard> drawCards;
@@ -187,6 +194,15 @@ public class TriPeaksTest {
         new Card(13, Type.CLUBS)};
     this.pyramid3[2] = row32;
 
+    this.pyramid4 = new ICard[3][];
+    ICard[] row40 = {new Card(12, Type.HEARTS)};
+    this.pyramid4[0] = row40;
+    ICard[] row41 = {new Card(10, Type.CLUBS), new Card(5, Type.DIAMONDS)};
+    this.pyramid4[1] = row41;
+    ICard[] row42 = {new Card(1, Type.SPADES), null,
+        new Card(8, Type.CLUBS)};
+    this.pyramid4[2] = row42;
+
     //Empty Pyramid
     this.pyramid5 = new ICard[3][];
     ICard[] row50 = {null};
@@ -210,6 +226,22 @@ public class TriPeaksTest {
         new Card(8, Type.CLUBS)};
     this.pyramid2[2] = row22;
 
+    this.pyramid9 = new ICard[3][];
+    ICard[] row91 = {null};
+    this.pyramid9[0] = row91;
+    ICard[] row92 = {null, null};
+    this.pyramid9[1] = row92;
+    ICard[] row93 = {null, null, null};
+    this.pyramid9[2] = row93;
+
+    this.pyramid10 = new ICard[3][];
+    ICard[] row101 = {new Card(3, Type.SPADES)};
+    this.pyramid10[0] = row101;
+    ICard[] row102 = {null, null};
+    this.pyramid10[1] = row102;
+    ICard[] row103 = {null, null, null};
+    this.pyramid10[2] = row103;
+
     this.draw2 = new ICard[1];
     this.draw2[0] = new Card(12, Type.CLUBS);
 
@@ -219,6 +251,10 @@ public class TriPeaksTest {
         this.draw2, true, this.rand);
     this.bps6 = new TriPeaks(new ArrayList<ICard>(), this.pyramid,
         new ICard[0], true, this.rand);
+    this.bps9 = new TriPeaks(new ArrayList<ICard>(), this.pyramid9,
+            new ICard[2], true, this.rand);
+    this.bps10 = new TriPeaks(new ArrayList<ICard>(), this.pyramid10,
+            new ICard[2], true, this.rand);
 
     this.view = new PyramidSolitaireTextualView(this.bps2);
     this.view3 = new PyramidSolitaireTextualView(this.bps3);
@@ -244,6 +280,9 @@ public class TriPeaksTest {
     this.bps7 = new TriPeaks(new ArrayList<ICard>(), this.pyramid2,
         this.draw2, false, this.rand);
     this.view5 = new PyramidSolitaireTextualView(this.bps);
+
+    this.bps8 = new TriPeaks(drawCards, this.pyramid4, cards, true, this.rand);
+    this.view8 = new PyramidSolitaireTextualView(this.bps8);
   }
 
   @Test
@@ -318,5 +357,49 @@ public class TriPeaksTest {
             "  10♥ 5♠  4♠  Q♠  8♣  K♣  5♦\n" +
             "9♠  2♠  9♣  Q♥  A♦  6♦  5♦  6♣\n" +
             "Draw: 5♠, Q♣", this.view4.toString());
+  }
+
+  @Test
+  public void testRemove2Cards() {
+    //has the same functionality as removing 2 cards in BasicPyramidSolitaire
+    assertEquals("    Q♥\n"
+            + "  K♣  A♦\n"
+            + "A♠  5♥  8♣\n"
+            + "Draw: Q♣", this.view.toString());
+    this.bps2.remove(2, 1, 2, 2);
+    assertEquals("    Q♥\n" +
+            "  K♣  A♦\n" +
+            "A♠\n" +
+            "Draw: Q♣", this.view.toString());
+  }
+
+  @Test
+  public void testGetScore() {
+    assertEquals(40, this.bps2.getScore());
+    assertEquals(52, this.bps3.getScore());
+    assertEquals(40, this.bps4.getScore());
+    assertEquals(0, this.bps5.getScore());
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testRemove2CardsRelaxedVersionRight() {
+    //The rules for a relaxed remove should not apply to TriPeaks.
+    assertEquals("    Q♥\n" +
+            "  10♣ 5♦\n" +
+            "A♠      8♣\n" +
+            "Draw: A♣, 2♥, 3♠", this.view8.toString());
+    this.bps4.remove(1, 1, 2, 2);
+    assertEquals("    Q♥\n" +
+            "  10♣\n" +
+            "A♠\n" +
+            "Draw: A♣, 2♥, 3♠", this.view8.toString());
+  }
+
+  @Test
+  public void testIsGameOverLost() {
+    //if there are no more moves left
+    assertEquals(true, this.bps10.isGameOver());
+    //if the game is won
+    assertEquals(true, this.bps9.isGameOver());
   }
 }

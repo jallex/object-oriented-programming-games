@@ -45,16 +45,9 @@ public class Relaxed extends BasicPyramidSolitaire {
    * @return true if either card can be removed with the other card
    */
   private boolean willBeUnCovered(int row1, int card1, int row2, int card2) {
-    /**
-    return (Math.abs(card1 - card2) == 1 || Math.abs(card1 - card2) == 0)
-            && (isUncovered(row2, card2)
+    return this.getCardAt(row1, card1) != null
+            && this.getCardAt(row2, card2) != null
             && row2 - row1 == 1
-            && isOtherCardNull(row1, card1, row2, card2)
-            || isUncovered(row1, card1)
-         //   && Math.abs(row1 - row2) == 1
-            && isOtherCardNull(row2, card2, row2, card2));**/
-
-    return row2 - row1 == 1
             && (card2 - card1 == 1 || card2 - card1 == 0)
             && isUncovered(row2, card2)
             && isOtherCardNull(row1, card1, row2, card2);
@@ -99,11 +92,15 @@ public class Relaxed extends BasicPyramidSolitaire {
     for (int i = 0; i < this.getNumRows(); i++) {
       for (int j = 0; j < this.getRowWidth(i); j++) {
         //test the card on the lower right
-        if (this.willBeUnCovered(i, j, i + 1, j)) {
+        if (this.willBeUnCovered(i, j, i + 1, j + 1)
+                && this.getCardAt(i, j).score() + this.getCardAt(i + 1, j + 1).score()
+                == 13) {
           return true;
         }
         //test the card on the lower left
-        if (i != 0 && this.willBeUnCovered(i, j, i + 1, j - 1)) {
+        if (i != 0 && this.willBeUnCovered(i, j, i + 1, j)
+                && this.getCardAt(i, j).score() + this.getCardAt(i + 1, j).score()
+                == 13) {
           return true;
         }
       }

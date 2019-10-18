@@ -7,5 +7,10 @@ is half-covered in the Relaxed class.
 I made many methods protected instead of private so that I could override
 them in the classes extending it.
 
+The PyramidSolitaireTextualController class:
+I changed playGame so that it displays the pyramid before any moves are made, because it
+was not doing so previously. Also, I made it so that it is not creating a new view every time
+that it renders, and this also avoided code duplication which was one of the things I got points
+off for in Assignment 3.
 
 
